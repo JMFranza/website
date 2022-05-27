@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import {
   AppBar,
+  Grid,
   Badge,
   Box,
   Button,
@@ -127,13 +128,21 @@ export default function Layout({ title, description, children }) {
     e.preventDefault();
     router.push(`/search?query=${query}`);
   };
-
+  const styles = {
+    paperContainer: {
+      height: 400,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundImage: `url(${'/public/images/b10.jpg'})`,
+    },
+  };
   return (
     <>
       <Head>
         <title>{title ? `${title} -ASTIG 03 MERCHANDISE` : 'ASTIG03'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
+
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppBar position="static" sx={classes.appbar}>
@@ -149,10 +158,26 @@ export default function Layout({ title, description, children }) {
               </IconButton>
               <NextLink href="/" passHref>
                 <Link>
-                  <Typography sx={classes.brand}> METRCHANDISE (ASTIG 03) </Typography>
+                  <Typography sx={classes.brand}>
+                    {' '}
+                    METRCHANDISE ASTIG 03{' '}
+                  </Typography>
                 </Link>
               </NextLink>
             </Box>
+            <NextLink href="/" passHref>
+              <Link>HOME</Link>
+            </NextLink>
+
+            <NextLink href="/search" passHref>
+              <Link>PRODUCTS</Link>
+            </NextLink>
+            <NextLink href="/faqs" passHref>
+              <Link>FAQS</Link>
+            </NextLink>
+            <NextLink href="/about" passHref>
+              <Link>ABOUT</Link>
+            </NextLink>
             <Drawer
               anchor="left"
               open={sidbarVisible}
@@ -165,7 +190,7 @@ export default function Layout({ title, description, children }) {
                     alignItems="center"
                     justifyContent="space-between"
                   >
-                    <Typography>shop category</Typography>
+                    <Typography> CATEGORIES </Typography>
                     <IconButton
                       aria-label="close"
                       onClick={sidebarCloseHandler}
@@ -213,10 +238,7 @@ export default function Layout({ title, description, children }) {
             </Box>
 
             <Box>
-              <Switch
-                checked={darkMode}
-                onChange={darkModeChangeHandler}
-              ></Switch>
+             
               <NextLink href="/cart" passHref>
                 <Link>
                   <Typography component="span">
@@ -233,6 +255,7 @@ export default function Layout({ title, description, children }) {
                   </Typography>
                 </Link>
               </NextLink>
+
               {userInfo ? (
                 <>
                   <Button
@@ -273,14 +296,113 @@ export default function Layout({ title, description, children }) {
             </Box>
           </Toolbar>
         </AppBar>
+
+        <Box
+          component="header"
+          bgcolor="text.disabled"
+          color="dark"
+          marginTop={2}
+          style={styles.paperContainer}
+        >
+          <Container>
+            <Grid container spacing={2}>
+              <Grid item xs={5} sm={3}>
+                <Box marginTop={10} fontSize={35}>
+                  ASTIG 03
+                </Box>
+              </Grid>
+              <Grid item xs={5} sm={3} marginTop={10}></Grid>
+              <Grid item xs={5} sm={6}>
+                <Box borderBottom={1} fontSize={30}>
+                  YOUR SHOPPING VENTURES STARTS HERE
+                </Box>
+                <Box>
+                  <Typography color="inherit" marginTop={5}>
+                    Check out more products that suit your style
+                  </Typography>
+                  <Box marginTop={4}></Box>
+                  <Button variant="contained" marginTop={10} href="/search">
+                    VIEW PRODUCTS
+                  </Button>
+                </Box>
+                <Box marginTop={10}></Box>
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
+
+        <Box marginTop={10}></Box>
         <Container component="main" sx={classes.main}>
           {children}
         </Container>
-        <Box component="footer" sx={classes.footer}>
-          <Typography>All rights reserved. astig 03 merchandise.</Typography>
-        </Box>
+
+        <footer>
+          <Box
+            component="footer"
+            sx={classes.footer}
+            bgcolor="text.secondary"
+            color="white"
+          >
+            <Container maxWidth="lg">
+              <Grid container spacing={2}>
+                <Grid item xs={5} sm={3}>
+                  <Box marginTop={10} fontSize={35}>
+                    ASTIG 03
+                  </Box>
+                </Grid>
+
+                <Grid item xs={5} sm={4}>
+                  <Box borderBottom={1} marginTop={3}>
+                    QUICK LINKS
+                  </Box>
+                  <Box marginTop={1}>
+                    <Link href="/" color="inherit">
+                      HOME
+                    </Link>
+                  </Box>
+                  <Box marginTop={1}>
+                    <Link href="/search" color="inherit">
+                      PRODUCTS
+                    </Link>
+                  </Box>
+                  <Box marginTop={1}>
+                    <Link href="/faqs" color="inherit">
+                      FAQS
+                    </Link>
+                  </Box>
+                  <Box marginTop={1}>
+                    <Link href="/about" color="inherit">
+                      ABOUT
+                    </Link>
+                  </Box>
+                </Grid>
+                <Grid item xs={5} sm={5}>
+                  <Box borderBottom={1} marginTop={3}>
+                    CONTACT INFO
+                  </Box>
+                  <Box marginTop={1}>
+                    <Link
+                      href="https://www.facebook.com/Astig03-General-Merchandise-1908583755853358/"
+                      color="inherit"
+                    >
+                      FACEBOOK
+                    </Link>
+                  </Box>
+                  <Box marginTop={1}>
+                    <Link href="/" color="inherit">
+                      09164273049
+                    </Link>
+                  </Box>
+                </Grid>
+              </Grid>
+              <Grid item xs={2}></Grid>
+              <Typography align="center" marginTop={5}>
+                © 2022 astig03 All rights reserved.
+              </Typography>
+            </Container>
+          </Box>
+        </footer>
       </ThemeProvider>
     </>
   );
 }
-

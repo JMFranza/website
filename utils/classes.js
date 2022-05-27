@@ -1,3 +1,5 @@
+//import { ForkRight } from '@mui/icons-material';
+
 const classes = {
   section: {
     marginTop: 1,
@@ -11,8 +13,7 @@ const classes = {
     minHeight: '80vh',
   },
   footer: {
-    marginTop: 1,
-    textAlign: 'center',
+    marginTop: 10,
   },
   appbar: {
     backgroundColor: '#203040',
@@ -50,9 +51,10 @@ const classes = {
     border: '1px solid #ffffff',
     backgroundColor: '#ffffff',
     borderRadius: 1,
+    marginLeft: 60,
   },
   searchInput: {
-    paddingLeft: 100,
+    paddingLeft: 2,
     color: '#000000',
     '& ::placeholder': {
       color: '#606060',
